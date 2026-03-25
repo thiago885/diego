@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { City, Service } from './data';
 
 export function generateMeta(title: string, description: string, url: string, keywords?: string): Metadata {
-  const fullUrl = `https://diegochaveiro.com${url}`;
+  const fullUrl = `https://diegochaveiro24horas.com.br${url}`;
   const siteName = 'Diego Chaveiro 24h';
   const defaultImage = 'https://diegochaveiro24horas.com.br/imagens/diego_chaveiro_logo.png';
 
@@ -58,7 +58,7 @@ export function getLocalBusinessSchema(city?: string, neighborhood?: string) {
     '@type': 'Locksmith',
     'name': `Diego Chaveiro 24h - ${location}`,
     'description': `Chaveiro emergencial 24 horas em ${location}. Atendimento rápido para aberturas, chaves automotivas e fechaduras.`,
-    'url': 'https://diegochaveiro.com',
+    'url': 'https://diegochaveiro24horas.com.br',
     'telephone': '+5519996085310',
     'image': 'https://diegochaveiro24horas.com.br/imagens/diego_chaveiro_logo.png',
     'priceRange': '$$',
@@ -134,7 +134,7 @@ export function getBreadcrumbSchema(items: { name: string; item: string }[]) {
       '@type': 'ListItem',
       'position': index + 1,
       'name': item.name,
-      'item': `https://diegochaveiro.com${item.item}`
+      'item': `https://diegochaveiro24horas.com.br${item.item}`
     }))
   };
 }

@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://diegochaveiro.com/sitemap.xml',
+    sitemap: 'https://diegochaveiro24horas.com.br/sitemap.xml',
   };
 }
