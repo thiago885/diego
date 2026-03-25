@@ -1,0 +1,5 @@
+{
+  "name": "Diego Chaveiro 24h",
+  "description": "Chaveiro 24 horas especializado em abertura de portas, chaves automotivas e fechaduras na região de Campinas.",
+  "requestFramePermissions": ["geolocation"]
+}
