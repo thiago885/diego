@@ -67,8 +67,8 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           {/* Card 1: Abertura de Portas */}
-          <Link href="/servicos/abertura-de-portas" className="bg-[#ffeb99] p-8 flex flex-col items-center text-center shadow-lg border border-slate-200 hover:scale-[1.02] transition-transform group">
-            <h2 className="text-4xl font-serif font-bold mb-6 group-hover:text-red-600 transition-colors">Abertura de Portas</h2>
+          <div className="bg-[#ffeb99] p-8 flex flex-col items-center text-center shadow-lg border border-slate-200 transition-all group">
+            <h2 className="text-4xl font-serif font-bold mb-6">Abertura de Portas</h2>
             <div className="relative w-full aspect-square mb-6 border-2 border-slate-800 bg-white">
               <Image 
                 src={`${baseUrl}fachada_chaveiro_diego.webp`} 
@@ -80,15 +80,15 @@ export default function HomePage() {
             </div>
             <p className="font-bold mb-4 text-slate-900">Oferecemos serviços de abertura de portas residenciais, comerciais e automotivas.</p>
             <div className="h-px w-full bg-slate-800 mb-4 opacity-20" />
-            <p className="text-sm mb-8 text-slate-700">Nossa equipe de profissionais qualificados está sempre pronta para ajudar em casos de perda ou roubo de chaves, fechaduras quebradas ou travadas. Atendemos em diversas <Link href="/cidades" className="underline font-bold">cidades da região</Link>.</p>
-            <div className="w-full bg-black text-white py-3 font-bold text-lg hover:bg-slate-900 transition-colors">
+            <p className="text-sm mb-8 text-slate-700">Nossa equipe de profissionais qualificados está sempre pronta para ajudar em casos de perda ou roubo de chaves, fechaduras quebradas ou travadas. Atendemos em diversas <Link href="/cidades" className="underline font-bold hover:text-red-600">cidades da região</Link>.</p>
+            <Link href="/servicos/abertura-de-portas" className="w-full bg-black text-white py-3 font-bold text-lg hover:bg-slate-900 transition-colors text-center">
               Saiba Mais
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {/* Card 2: Chaves Codificadas */}
-          <Link href="/servicos/chaves-codificadas" className="bg-[#d1d1e9] p-8 flex flex-col items-center text-center shadow-lg border border-slate-200 hover:scale-[1.02] transition-transform group">
-            <h2 className="text-4xl font-serif font-bold mb-6 group-hover:text-red-600 transition-colors">Chaves Codificadas</h2>
+          <div className="bg-[#d1d1e9] p-8 flex flex-col items-center text-center shadow-lg border border-slate-200 transition-all group">
+            <h2 className="text-4xl font-serif font-bold mb-6">Chaves Codificadas</h2>
             <div className="relative w-full aspect-square mb-6 border-2 border-slate-800 bg-white">
               <Image 
                 src={`${baseUrl}copia_de_chaves.png`} 
@@ -100,15 +100,15 @@ export default function HomePage() {
             </div>
             <p className="font-bold mb-4 text-slate-900">Somos especialistas em chaves codificadas para automóveis.</p>
             <div className="h-px w-full bg-slate-800 mb-4 opacity-20" />
-            <p className="text-sm mb-8 text-slate-700">Oferecemos serviços de cópia e programação de chaves para a maioria das <Link href="/marcas" className="underline font-bold">marcas e modelos</Link> de veículos nacionais e importados.</p>
-            <div className="w-full bg-black text-white py-3 font-bold text-lg hover:bg-slate-900 transition-colors">
+            <p className="text-sm mb-8 text-slate-700">Oferecemos serviços de cópia e programação de chaves para a maioria das <Link href="/marcas" className="underline font-bold hover:text-red-600">marcas e modelos</Link> de veículos nacionais e importados.</p>
+            <Link href="/servicos/chaves-codificadas" className="w-full bg-black text-white py-3 font-bold text-lg hover:bg-slate-900 transition-colors text-center">
               Saiba Mais
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           {/* Card 3: Troca de Fechaduras */}
-          <Link href="/servicos/instalacao-e-troca-de-fechaduras" className="bg-[#c9f0f5] p-8 flex flex-col items-center text-center shadow-lg border border-slate-200 hover:scale-[1.02] transition-transform group">
-            <h2 className="text-4xl font-serif font-bold mb-6 group-hover:text-red-600 transition-colors">Troca de Fechaduras</h2>
+          <div className="bg-[#c9f0f5] p-8 flex flex-col items-center text-center shadow-lg border border-slate-200 transition-all group">
+            <h2 className="text-4xl font-serif font-bold mb-6">Troca de Fechaduras</h2>
             <div className="relative w-full aspect-square mb-6 border-2 border-slate-800 bg-white">
               <Image 
                 src={`${baseUrl}interna_chaveiro_diego.png`} 
@@ -121,10 +121,10 @@ export default function HomePage() {
             <p className="font-bold mb-4 text-slate-900">Realizamos a troca de fechaduras residenciais, comerciais e automotivas.</p>
             <div className="h-px w-full bg-slate-800 mb-4 opacity-20" />
             <p className="text-sm mb-8 text-slate-700">Trabalhamos com as melhores marcas do mercado, garantindo segurança e qualidade para nossos clientes.</p>
-            <div className="w-full bg-black text-white py-3 font-bold text-lg hover:bg-slate-900 transition-colors">
+            <Link href="/servicos/instalacao-e-troca-de-fechaduras" className="w-full bg-black text-white py-3 font-bold text-lg hover:bg-slate-900 transition-colors text-center">
               Saiba Mais
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
         
         <div className="mt-16 text-center">

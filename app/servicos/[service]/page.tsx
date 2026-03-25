@@ -8,6 +8,12 @@ interface Props {
   params: Promise<{ service: string }>;
 }
 
+export async function generateStaticParams() {
+  return services.map((service) => ({
+    service: service.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: Props) {
   const { service: serviceSlug } = await params;
   const service = services.find(s => s.slug === serviceSlug);

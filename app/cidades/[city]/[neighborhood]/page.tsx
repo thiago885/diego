@@ -8,6 +8,19 @@ interface Props {
   params: Promise<{ city: string; neighborhood: string }>;
 }
 
+export async function generateStaticParams() {
+  return cities.flatMap((city) =>
+    city.neighborhoods.map((neighborhood) => ({
+      city: city.slug,
+      neighborhood: neighborhood
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-'),
+    }))
+  );
+}
+
 export async function generateMetadata({ params }: Props) {
   const { city: citySlug, neighborhood: neighborhoodSlug } = await params;
   const city = cities.find(c => c.slug === citySlug);

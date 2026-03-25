@@ -8,6 +8,12 @@ interface Props {
   params: Promise<{ city: string }>;
 }
 
+export async function generateStaticParams() {
+  return cities.map((city) => ({
+    city: city.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: Props) {
   const { city: citySlug } = await params;
   const city = cities.find(c => c.slug === citySlug);

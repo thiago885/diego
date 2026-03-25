@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { cities, services, brands } from '@/lib/data';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://diegochaveiro.com';
 

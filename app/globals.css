@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* Ocultar indicadores de desenvolvimento do Next.js */
+nextjs-portal,
+#__next-build-watcher,
+#__next-prerender-indicator,
+.nextjs-static-indicator,
+.nextjs-toast-wrapper {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
