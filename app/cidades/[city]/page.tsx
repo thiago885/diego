@@ -19,6 +19,19 @@ export async function generateMetadata({ params }: Props) {
   const city = cities.find(c => c.slug === citySlug);
   if (!city) return {};
 
+  // Lógica de conteúdo dinâmico para SEO da Cidade
+  const intros = [
+    `Trancou a chave para fora em ${city.name}? O Diego Chaveiro 24h está de plantão agora mesmo.`,
+    `Precisa de um chaveiro urgente em ${city.name}? Chegamos em até 30 minutos com equipe especializada.`,
+    `Se você está em ${city.name} e teve problemas com sua fechadura, conte com atendimento profissional 24h.`,
+    `Segurança é prioridade em ${city.name}. Oferecemos serviços completos de chaveiro residencial e automotivo.`,
+    `Perdeu as chaves em ${city.name}? Não se preocupe, atendemos emergências dia e noite com rapidez.`,
+    `O melhor serviço de chaveiro em ${city.name} você encontra aqui. Atendimento rápido e preço justo.`
+  ];
+  
+  const introIndex = city.name.length % intros.length;
+  const selectedIntro = intros[introIndex];
+
   const keywords = [
     `chaveiro em ${city.name}`,
     `chaveiro 24h ${city.name}`,
@@ -32,7 +45,7 @@ export async function generateMetadata({ params }: Props) {
 
   return generateMeta(
     `Chaveiro 24h em ${city.name} | Atendimento Rápido`,
-    `Precisa de chaveiro em ${city.name}? Atendimento emergencial 24h para aberturas e chaves automotivas. Chegamos em até 30 min em ${city.name}.`,
+    selectedIntro,
     `/cidades/${city.slug}`,
     keywords
   );
@@ -43,6 +56,30 @@ export default async function CityPage({ params }: Props) {
   const city = cities.find(c => c.slug === citySlug);
 
   if (!city) notFound();
+
+  // Arrays de Conteúdo Dinâmico para Cidades
+  const intros = [
+    `Trancou a chave para fora em ${city.name}? O Diego Chaveiro 24h está de plantão agora mesmo.`,
+    `Precisa de um chaveiro urgente em ${city.name}? Chegamos em até 30 minutos com equipe especializada.`,
+    `Se você está em ${city.name} e teve problemas com sua fechadura, conte com atendimento profissional 24h.`,
+    `Segurança é prioridade em ${city.name}. Oferecemos serviços completos de chaveiro residencial e automotivo.`,
+    `Perdeu as chaves em ${city.name}? Não se preocupe, atendemos emergências dia e noite com rapidez.`,
+    `O melhor serviço de chaveiro em ${city.name} você encontra aqui. Atendimento rápido e preço justo.`
+  ];
+
+  const developments = [
+    `Nossa equipe técnica utiliza ferramentas de última geração para garantir que sua porta seja aberta sem danos. Atendemos residências, comércios e veículos em toda a região de ${city.name}.`,
+    `Especialistas em chaves codificadas e fechaduras eletrônicas, trazemos tecnologia e confiança para os moradores de ${city.name}. Conte com quem entende do assunto.`,
+    `Com anos de experiência atendendo em ${city.name}, o Diego Chaveiro se destaca pela pontualidade e qualidade no serviço prestado.`,
+    `Não importa o horário, se você precisar de socorro em ${city.name}, nossa unidade móvel está pronta para te atender com toda a segurança necessária.`
+  ];
+
+  // Seleção baseada no comprimento do nome da cidade
+  const introIndex = city.name.length % intros.length;
+  const devIndex = city.name.length % developments.length;
+
+  const selectedIntro = intros[introIndex];
+  const selectedDev = developments[devIndex];
 
   const jsonLd = [
     getLocalBusinessSchema(city.name),
@@ -80,7 +117,7 @@ export default async function CityPage({ params }: Props) {
               Chaveiro 24h em <span className="text-red-600">{city.name}</span>
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed mb-10">
-              {city.description || `Atendimento especializado em toda a cidade de ${city.name}. Se você está trancado para fora de casa ou do carro, ligue agora para um atendimento imediato.`}
+              {selectedIntro}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a 
@@ -122,7 +159,7 @@ export default async function CityPage({ params }: Props) {
               <div className="mt-20 prose prose-slate max-w-none">
                 <h3 className="text-2xl font-bold mb-6 text-slate-900">Por que escolher o Diego Chaveiro em {city.name}?</h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  Sabemos que emergências com chaves e fechaduras não têm hora para acontecer. Por isso, mantemos equipes estratégicas em {city.name} para garantir o menor tempo de resposta da região.
+                  {selectedDev}
                 </p>
                 <ul className="grid sm:grid-cols-2 gap-4 list-none p-0">
                   <li className="flex items-center gap-3 text-slate-700 font-medium">

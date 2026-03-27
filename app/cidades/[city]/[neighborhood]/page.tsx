@@ -31,6 +31,19 @@ export async function generateMetadata({ params }: Props) {
   );
   if (!neighborhood) return {};
 
+  // Lógica de conteúdo dinâmico para SEO
+  const intros = [
+    `Trancou a chave para fora no ${neighborhood}? O Diego Chaveiro 24h está de plantão agora mesmo.`,
+    `Precisa de um chaveiro urgente no ${neighborhood}? Chegamos em até 30 minutos com equipe especializada.`,
+    `Se você está no ${neighborhood} e teve problemas com sua fechadura, conte com atendimento profissional 24h.`,
+    `Segurança é prioridade no ${neighborhood}. Oferecemos serviços completos de chaveiro residencial e automotivo.`,
+    `Perdeu as chaves no ${neighborhood}? Não se preocupe, atendemos emergências dia e noite com rapidez.`,
+    `O melhor serviço de chaveiro no ${neighborhood} você encontra aqui. Atendimento rápido e preço justo.`
+  ];
+  
+  const introIndex = neighborhood.length % intros.length;
+  const selectedIntro = intros[introIndex];
+
   const keywords = [
     `chaveiro no ${neighborhood}`,
     `chaveiro 24h ${neighborhood}`,
@@ -43,8 +56,8 @@ export async function generateMetadata({ params }: Props) {
   ].join(', ');
 
   return generateMeta(
-    `Chaveiro 24h no ${neighborhood}, ${city.name} | Chegamos Rápido`,
-    `Precisa de chaveiro no bairro ${neighborhood} em ${city.name}? Atendimento emergencial 24h. Aberturas e chaves automotivas com garantia no ${neighborhood}.`,
+    `Chaveiro 24h no ${neighborhood} | Chegamos em 20 Minutos`,
+    selectedIntro,
     `/cidades/${city.slug}/${neighborhoodSlug}`,
     keywords
   );
@@ -61,6 +74,47 @@ export default async function NeighborhoodPage({ params }: Props) {
   );
 
   if (!neighborhood) notFound();
+
+  // Arrays de Conteúdo Dinâmico
+  const intros = [
+    `Trancou a chave para fora no ${neighborhood}? O Diego Chaveiro 24h está de plantão agora mesmo.`,
+    `Precisa de um chaveiro urgente no ${neighborhood}? Chegamos em até 30 minutos com equipe especializada.`,
+    `Se você está no ${neighborhood} e teve problemas com sua fechadura, conte com atendimento profissional 24h.`,
+    `Segurança é prioridade no ${neighborhood}. Oferecemos serviços completos de chaveiro residencial e automotivo.`,
+    `Perdeu as chaves no ${neighborhood}? Não se preocupe, atendemos emergências dia e noite com rapidez.`,
+    `O melhor serviço de chaveiro no ${neighborhood} você encontra aqui. Atendimento rápido e preço justo.`
+  ];
+
+  const developments = [
+    `Nossa equipe técnica utiliza ferramentas de última geração para garantir que sua porta seja aberta sem danos. Atendemos residências, comércios e veículos em toda a região do ${neighborhood}.`,
+    `Especialistas em chaves codificadas e fechaduras eletrônicas, trazemos tecnologia e confiança para os moradores do ${neighborhood}. Conte com quem entende do assunto.`,
+    `Com anos de experiência atendendo em ${city.name}, o Diego Chaveiro se destaca pela pontualidade e qualidade no serviço prestado no ${neighborhood}.`,
+    `Não importa o horário, se você precisar de socorro no ${neighborhood}, nossa unidade móvel está pronta para te atender com toda a segurança necessária.`
+  ];
+
+  const allTestimonials = [
+    { name: 'João M.', text: `Excelente atendimento no ${neighborhood}. Chegou muito rápido!`, stars: 5 },
+    { name: 'Maria Silva', text: `Preço justo e serviço de qualidade aqui no ${neighborhood}. Recomendo.`, stars: 5 },
+    { name: 'Pedro H.', text: `Chaveiro de confiança no ${neighborhood}. Resolveu meu problema na hora.`, stars: 5 },
+    { name: 'Carla F.', text: `Muito atencioso e profissional. O melhor do ${neighborhood}.`, stars: 5 },
+    { name: 'Lucas G.', text: `Precisei de madrugada no ${neighborhood} e fui atendido prontamente.`, stars: 5 },
+    { name: 'Beatriz R.', text: `Serviço limpo e rápido. Nota 10 para o atendimento no ${neighborhood}.`, stars: 5 },
+    { name: 'Marcos A.', text: `Abriu meu carro sem riscar nada. Ótimo profissional no ${neighborhood}.`, stars: 5 },
+    { name: 'Fernanda L.', text: `Sempre que preciso de chaveiro no ${neighborhood}, chamo o Diego.`, stars: 5 }
+  ];
+
+  // Seleção baseada no comprimento do nome do bairro
+  const introIndex = neighborhood.length % intros.length;
+  const devIndex = neighborhood.length % developments.length;
+  const testIndex1 = neighborhood.length % allTestimonials.length;
+  const testIndex2 = (neighborhood.length + 3) % allTestimonials.length;
+
+  const selectedIntro = intros[introIndex];
+  const selectedDev = developments[devIndex];
+  const selectedTestimonials = [
+    allTestimonials[testIndex1],
+    allTestimonials[testIndex2]
+  ];
 
   const jsonLd = [
     getLocalBusinessSchema(city.name, neighborhood),
@@ -107,7 +161,7 @@ export default async function NeighborhoodPage({ params }: Props) {
                 Chaveiro 24h no <span className="text-red-600">{neighborhood}</span>
               </h1>
               <p className="text-xl text-slate-600 leading-relaxed mb-10">
-                Está trancado para fora no bairro <strong>{neighborhood}</strong>? O Diego Chaveiro possui técnicos de plantão na região para um atendimento em menos de 30 minutos.
+                {selectedIntro}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
@@ -135,10 +189,7 @@ export default async function NeighborhoodPage({ params }: Props) {
               </div>
               <h3 className="text-xl font-bold mb-6">Avaliações no {neighborhood}</h3>
               <div className="space-y-6">
-                {[
-                  { name: 'Ricardo S.', text: 'Atendimento muito rápido aqui no bairro. Recomendo!', stars: 5 },
-                  { name: 'Ana Paula', text: 'Perdi a chave do carro e o Diego resolveu tudo na hora. Preço justo.', stars: 5 }
-                ].map((review, i) => (
+                {selectedTestimonials.map((review, i) => (
                   <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
                     <div className="flex gap-1 mb-2">
                       {[...Array(review.stars)].map((_, j) => (
@@ -161,12 +212,12 @@ export default async function NeighborhoodPage({ params }: Props) {
           <div className="grid lg:grid-cols-3 gap-16">
             <div className="lg:col-span-2 space-y-12">
               <article className="prose prose-slate max-w-none">
-                <h2 className="text-3xl font-black tracking-tight text-slate-900 mb-6">Serviço de Chaveiro de Emergência no {neighborhood}</h2>
+                <h2 className="text-3xl font-black tracking-tight text-slate-900 mb-6">Atendimento no {neighborhood} - Diego Chaveiro</h2>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  Se você mora ou trabalha no <strong>{neighborhood}</strong> em {city.name}, sabe que a segurança é prioridade. Nossa equipe de chaveiros profissionais está disponível 24 horas por dia para resolver qualquer problema com fechaduras, chaves e sistemas de segurança.
+                  {selectedIntro}
                 </p>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  Realizamos aberturas de portas residenciais, comerciais e veículos de todas as marcas. Além disso, somos especialistas em chaves codificadas e instalação de fechaduras eletrônicas no {neighborhood}.
+                  {selectedDev}
                 </p>
               </article>
 
